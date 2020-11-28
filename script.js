@@ -4,7 +4,6 @@ const imagesContainer = document.querySelector('.images-container');
 const saveConfirmed = document.querySelector('.save-confirmed');
 const loader = document.querySelector('.loader');
 
-
 // NASA API
 const count = 10;
 const apiKey = 'DEMO_KEY';
@@ -78,7 +77,6 @@ function createDOMNodes(page) {
         cardBody.append(cardTitle, saveText, cardText, footer);
         link.appendChild(image);
         card.append(link, cardBody);
-        // console.log(card);
         imagesContainer.appendChild(card);
     });
 
