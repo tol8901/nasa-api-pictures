@@ -1,5 +1,5 @@
 const resultsNav = document.getElementById('resultsNav');
-const favouritessNav = document.getElementById('favouritesNav');
+const favouritesNav = document.getElementById('favouritesNav');
 const imagesContainer = document.querySelector('.images-container');
 const saveConfirmed = document.querySelector('.save-confirmed');
 const loader = document.querySelector('.loader');
@@ -13,10 +13,20 @@ const apiUrl = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}&count=${co
 let resultsArray = [];
 let favourites = {};
 
+function showContent(page) {
+    window.scrollTo({ top: 0, bahavor: 'instant' });
+    if (page === 'results') {
+        resultsNav.classList.remove('hidden');
+        favouritesNav.classList.add('hidden');
+    } else {
+        resultsNav.classList.add('hidden');
+        favouritesNav.classList.remove('hidden');
+    }
+    loader.classList.add('hidden');
+}
+
 function createDOMNodes(page) {
     const currentArray = page === 'results' ? resultsArray : Object.values(favourites);
-    console.log('Current Array', page, currentArray);
-    // console.log(page);
     currentArray.forEach((result) => {
         // Card Container
         const card = document.createElement('div');
@@ -78,21 +88,24 @@ function updateDOM(page) {
     // GetFavourites from LocalStorage
     if (localStorage.getItem('nasaFavourites')) {
         favourites = JSON.parse(localStorage.getItem('nasaFavourites'));
-        console.log('favourites from localstorage', favourites);
     }
     imagesContainer.textContent = '';
     createDOMNodes(page);
+    showContent(page);
+
 }
 
 // Get 10 images from NASA API
 async function getNasaPictures() {
+    // Show Loader
+    loader.classList.remove('hidden');
     try {
         const response = await fetch(apiUrl);
         resultsArray = await response.json();
-        updateDOM(favourites);
+        updateDOM('results');
     } catch (error) {
         // Catch Error Here
-        console.log(error);
+        console.log(`Hwoops! The error occured. Details: ${error}`);
     }
 }
 
