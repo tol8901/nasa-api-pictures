@@ -5,10 +5,10 @@ The data is loaded from NASA using NASA API.
 # Features and Details
 - The user can load pictures from NASA (via API), and until data loading the loading animation is showing;
 - If the user click to the image, this image will be opened in new tab in full-size;
-- The user can add and remove posts to the Favourites;
-- when the user add some post to the Favourites, the pop-up message appears (in the bottom right of the window), and after some moments disappears;
+- The user can add and remove posts to the Favorites;
+- Wwhen the user add some post to the Favorites, the pop-up message appears (in the bottom right of the window), and after some moments disappears;
 - The user can load more pictures by click of the corresponding navigation point in the upper side of the page;
-- Favourites cards are saved in LocalStorage;
+- Favorites cards are saved in LocalStorage;
 - The project can ve viewed ia desctop client and mobile both;
 
 # Available
